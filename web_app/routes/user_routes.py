@@ -40,21 +40,21 @@ def create_order():
     flash(f"OOPS, Ordering not yet implemented!", "warning")
     return redirect("/user/orders")
 
-    #service = current_app.config["SPREADSHEET_SERVICE"]
-    #try:
-    #    new_order = {
-    #        "user_email": user_email,
-    #        "product_id": int(product_id),
-    #        "product_name": product_name,
-    #        "product_price": float(product_price)
-    #    }
-    #    service.create_order(new_order)
-    #    flash(f"Order received!", "success")
-    #    return redirect("/user/orders")
-    #except Exception as err:
-    #    print(err)
-    #    flash(f"Oops, something went wrong: {err}", "warning")
-    #    return redirect("/products")
+    service = current_app.config["SPREADSHEET_SERVICE"]
+    try:
+        new_order = {
+            "user_email": user_email,
+            "product_id": int(product_id),
+            "product_name": product_name,
+            "product_price": float(product_price)
+        }
+        service.create_order(new_order)
+        flash(f"Order received!", "success")
+        return redirect("/user/orders")
+    except Exception as err:
+        print(err)
+        flash(f"Oops, something went wrong: {err}", "warning")
+        return redirect("/products")
 
 
 @user_routes.route("/user/orders")
